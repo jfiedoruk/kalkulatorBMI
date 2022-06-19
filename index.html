@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator BMI</title>
+</head>
+<style>
+  h1 {
+    font-size: 40px;
+  }
+
+  .main {
+    display: flex;
+  }
+
+  .frame {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    width: 500px;
+    min-height: 150px;
+  }
+</style>
+
+<body>
+  <h1 class="title">
+    Kalkulator BMI
+  </h1>
+  <div class="main">
+    <div class="frame left">
+      <p>Wzrost:
+        <input class="height">
+      </p>
+      <p>Waga:
+        <input class="weight">
+      </p>
+      <button class="przycisk">
+        Zatwierdź
+      </button>
+    </div>
+    <div class="frame middle">
+      <div id="opinia"></div>
+      <div>Wzrost:<div id="wzrostWyswietlony"></div>
+      </div>
+      <div>Waga:<div id="wagaWyswietlona"></div>
+      </div>
+      <div><strong>Wyliczone BMI:</strong>
+        <div class="wynikWyswietlony"></div>
+      </div>
+    </div>
+    <div class="frame right">
+      <div>Historia wpisów:<div id="historia"></div>
+      </div>
+      <div id="pomiaryHistorii"></div>
+      <div>Średnia BMI:<div id="srednia"></div>
+      </div>
+    </div>
+    <script>
+
+      const history = [];
+
+      let przyciskElement = document.querySelector(".przycisk");
+      function liczBMI() {
+        const czyWagaJestDobra = prawidlowaWaga();
+        const czyWzrostJestDobry = prawidlowyWzrost();
+        if (czyWagaJestDobra === false || czyWzrostJestDobry === false) {
+          return;
+        }
+        let poleWaga = document.querySelector('.weight');
+        let poleWzrost = document.querySelector('.height');
+
+        let wartoscWaga = parseFloat(poleWaga.value);
+        let wartoscWzrost = parseFloat(poleWzrost.value);
+
+        let BMI = wartoscWaga / ((wartoscWzrost / 100) * (wartoscWzrost / 100));
+
+        let wynikElement = document.querySelector('.wynikWyswietlony');
+
+        wynikElement.innerHTML = BMI.toFixed(2);
+
+        poleWaga.value = '';
+        poleWzrost.value = '';
+
+        komentarz(BMI);
+
+        history.push({
+          wzrost: wartoscWzrost,
+          waga: wartoscWaga,
+          bmi: BMI,
+          data: new Date(),
+        });
+        console.log(history);
+
+        const divPomiar = document.createElement("div");
+        divPomiar.style.cssText = "margin: 10px; padding: 10px; cursor: pointer; border: 1px solid black";
+        divPomiar.addEventListener("click", function () {
+          document.getElementById("wagaWyswietlona").innerHTML = wartoscWaga;
+          document.getElementById("wzrostWyswietlony").innerHTML = wartoscWzrost;
+          wynikElement.innerHTML = BMI.toFixed(2);
+          document.getElementById("opinia").innerHTML = "";
+        })
+        divPomiar.innerHTML = "Pomiar #" + history.length + " : " + history[history.length - 1].data;
+        let pomiaryHistoriiLista = document.querySelector("#pomiaryHistorii");
+        pomiaryHistoriiLista.appendChild(divPomiar);
+
+        let sumaBMI = 0;
+        let sredniaBMI = 0;
+        for (let i = 0; i < history.length; i++) {
+          sumaBMI = sumaBMI + parseFloat(history[i].bmi);
+        }
+        let iloscBMI = history.length;
+        sredniaBMI = sumaBMI / iloscBMI;
+
+        let pomiary = document.querySelector('#srednia');
+
+        pomiary.innerHTML = sredniaBMI.toFixed(2);
+
+        console.log("Średnia to " + sredniaBMI);
+
+      }
+      przyciskElement.addEventListener("click", liczBMI);
+
+
+      function komentarz(wartoscBMI) {
+        let k = "";
+        if (history.length > 0) {
+          if (wartoscBMI < history[history.length - 1].bmi) {
+            k = "Twoje BMI spadło!";
+          } else if (wartoscBMI > history[history.length - 1].bmi) {
+            k = "Twoje BMI wzrosło!";
+          } else {
+            k = "Twoje BMI nie zmieniło się!";
+          };
+          document.getElementById("opinia").innerHTML = k;
+        }
+      }
+
+      function prawidlowaWaga() {
+        let x = "";
+        let poleWaga = document.querySelector('.weight');
+        let wartoscWaga = parseFloat(poleWaga.value);
+        if (wartoscWaga >= 40 && wartoscWaga <= 200) {
+          x = wartoscWaga;
+          document.getElementById("wagaWyswietlona").innerHTML = x;
+          return true;
+        } else {
+          x = "Waga nie jest poprawna.";
+          document.getElementById("wagaWyswietlona").innerHTML = x;
+          return false;
+        };
+      }
+
+      function prawidlowyWzrost() {
+        let y = "";
+        let poleWzrost = document.querySelector('.height');
+        let wartoscWzrost = parseFloat(poleWzrost.value);
+        if (wartoscWzrost >= 120 && wartoscWzrost <= 240) {
+          y = wartoscWzrost;
+          document.getElementById("wzrostWyswietlony").innerHTML = y;
+          return true;
+        } else {
+          y = "Wzrost nie jest poprawny.";
+          document.getElementById("wzrostWyswietlony").innerHTML = y;
+          return false;
+        };
+      }
+
+    </script>
+
+</body>
+
+</html>

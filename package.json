@@ -1,0 +1,16 @@
+{
+  "name": "kalkulatorbmi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server",
+    "test": "npx cypress open"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^9.6.0",
+    "http-server": "^14.1.1"
+  }
+}
