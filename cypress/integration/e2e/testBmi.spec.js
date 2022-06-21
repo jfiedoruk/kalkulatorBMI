@@ -1,5 +1,9 @@
 /// <reference types="cypress" />
 
+import bmiPage from '../../pageObject/bmiPage'
+
+const bmi = new bmiPage();
+
 context('KalkulatorBMI', ()=>{
   describe('Landing Page', ()=> {
      it('Test1', ()=>{
@@ -15,32 +19,32 @@ context('KalkulatorBMI', ()=>{
     });
     it('Test2', ()=>{
       cy.get('.height').type('170');
-      cy.get('.przycisk').click();
+      bmi.getConfirmButton().click();
       cy.get('#wzrostWyswietlony').should('contain','170');
     });
     it('Test3', ()=>{
       cy.get('.weight').type('60');
-      cy.get('.przycisk').click();
+      bmi.getConfirmButton().click();
       cy.get('#wagaWyswietlona').should('contain','60');
     });
     it('Test4', ()=>{
       cy.get('.height').type('241');
-      cy.get('.przycisk').click();
+      bmi.getConfirmButton().click();
       cy.get('#wzrostWyswietlony').should('contain','Wzrost nie jest poprawny.');
     });
     it('Test5', ()=>{
       cy.get('.height').type('119');
-      cy.get('.przycisk').click();
+      bmi.getConfirmButton().click();
       cy.get('#wzrostWyswietlony').should('contain','Wzrost nie jest poprawny.');
     });
     it('Test6', ()=>{
       cy.get('.weight').type('201');
-      cy.get('.przycisk').click();
+      bmi.getConfirmButton().click();
       cy.get('#wagaWyswietlona').should('contain','Waga nie jest poprawna.');
     });
     it('Test7', ()=>{
       cy.get('.weight').type('39');
-      cy.get('.przycisk').click();
+      bmi.getConfirmButton().click();
       cy.get('#wagaWyswietlona').should('contain','Waga nie jest poprawna.');
     });
     it('Test8', ()=>{
