@@ -1,0 +1,144 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-06-23T13:59:56.345Z",
+    "end": "2022-06-23T13:59:58.558Z",
+    "duration": 2213,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f4254afe-612d-4384-bc0c-13aca61c7ec1",
+      "title": "",
+      "fullFile": "cypress/integration/2-advanced-examples/window.spec.js",
+      "file": "cypress/integration/2-advanced-examples/window.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "91c36f46-b413-455f-a03d-03015dd77d61",
+          "title": "Window",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "cy.window() - get the global window object",
+              "fullTitle": "Window cy.window() - get the global window object",
+              "timedOut": null,
+              "duration": 410,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// https://on.cypress.io/window\ncy.window().should('have.property', 'top');",
+              "err": {},
+              "uuid": "a4cad65c-ddae-4b16-9d3a-ddf22f347969",
+              "parentUUID": "91c36f46-b413-455f-a03d-03015dd77d61",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "cy.document() - get the document object",
+              "fullTitle": "Window cy.document() - get the document object",
+              "timedOut": null,
+              "duration": 226,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// https://on.cypress.io/document\ncy.document().should('have.property', 'charset').and('eq', 'UTF-8');",
+              "err": {},
+              "uuid": "65f32f1a-8f97-4853-887f-e009766cf036",
+              "parentUUID": "91c36f46-b413-455f-a03d-03015dd77d61",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "cy.title() - get the title",
+              "fullTitle": "Window cy.title() - get the title",
+              "timedOut": null,
+              "duration": 198,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// https://on.cypress.io/title\ncy.title().should('include', 'Kitchen Sink');",
+              "err": {},
+              "uuid": "b3e0c6b8-e3df-4f0d-8114-93deb4ba61d6",
+              "parentUUID": "91c36f46-b413-455f-a03d-03015dd77d61",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a4cad65c-ddae-4b16-9d3a-ddf22f347969",
+            "65f32f1a-8f97-4853-887f-e009766cf036",
+            "b3e0c6b8-e3df-4f0d-8114-93deb4ba61d6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 834,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "[status]_[datetime]-[name]-report",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportFilename": "[status]_[datetime]-[name]-report",
+        "timestamp": "isoDateTime",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-06-23T13:58:57.658Z",
+    "end": "2022-06-23T13:59:01.598Z",
+    "duration": 3940,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e6f19d10-cad4-4520-b137-7b63a90411ec",
+      "title": "",
+      "fullFile": "cypress/integration/2-advanced-examples/querying.spec.js",
+      "file": "cypress/integration/2-advanced-examples/querying.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b44622bd-fb69-4faa-a533-a3292599553c",
+          "title": "Querying",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "cy.get() - query DOM elements",
+              "fullTitle": "Querying cy.get() - query DOM elements",
+              "timedOut": null,
+              "duration": 672,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// https://on.cypress.io/get\ncy.get('#query-btn').should('contain', 'Button');\ncy.get('.query-btn').should('contain', 'Button');\ncy.get('#querying .well>button:first').should('contain', 'Button'); //              ↲\n// Use CSS selectors just like jQuery\ncy.get('[data-test-id=\"test-example\"]').should('have.class', 'example'); // 'cy.get()' yields jQuery object, you can get its attribute\n// by invoking `.attr()` method\ncy.get('[data-test-id=\"test-example\"]').invoke('attr', 'data-test-id').should('equal', 'test-example'); // or you can get element's CSS property\ncy.get('[data-test-id=\"test-example\"]').invoke('css', 'position').should('equal', 'static'); // or use assertions directly during 'cy.get()'\n// https://on.cypress.io/assertions\ncy.get('[data-test-id=\"test-example\"]').should('have.attr', 'data-test-id', 'test-example').and('have.css', 'position', 'static');",
+              "err": {},
+              "uuid": "aa0f6f79-5dad-4357-9ec7-ed672bc5ac24",
+              "parentUUID": "b44622bd-fb69-4faa-a533-a3292599553c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "cy.contains() - query DOM elements with matching content",
+              "fullTitle": "Querying cy.contains() - query DOM elements with matching content",
+              "timedOut": null,
+              "duration": 366,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// https://on.cypress.io/contains\ncy.get('.query-list').contains('bananas').should('have.class', 'third'); // we can pass a regexp to `.contains()`\ncy.get('.query-list').contains(/^b\\w+/).should('have.class', 'third');\ncy.get('.query-list').contains('apples').should('have.class', 'first'); // passing a selector to contains will\n// yield the selector containing the text\ncy.get('#querying').contains('ul', 'oranges').should('have.class', 'query-list');\ncy.get('.query-button').contains('Save Form').should('have.class', 'btn');",
+              "err": {},
+              "uuid": "012a4584-0df2-4355-a36f-fe295e035c72",
+              "parentUUID": "b44622bd-fb69-4faa-a533-a3292599553c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": ".within() - query DOM elements within a specific element",
+              "fullTitle": "Querying .within() - query DOM elements within a specific element",
+              "timedOut": null,
+              "duration": 275,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// https://on.cypress.io/within\ncy.get('.query-form').within(() => {\n  cy.get('input:first').should('have.attr', 'placeholder', 'Email');\n  cy.get('input:last').should('have.attr', 'placeholder', 'Password');\n});",
+              "err": {},
+              "uuid": "23524c6a-eeb6-4ebb-a873-7909884e3adb",
+              "parentUUID": "b44622bd-fb69-4faa-a533-a3292599553c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "cy.root() - query the root DOM element",
+              "fullTitle": "Querying cy.root() - query the root DOM element",
+              "timedOut": null,
+              "duration": 221,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// https://on.cypress.io/root\n// By default, root is the document\ncy.root().should('match', 'html');\ncy.get('.query-ul').within(() => {\n  // In this within, the root is now the ul DOM element\n  cy.root().should('have.class', 'query-ul');\n});",
+              "err": {},
+              "uuid": "471a2e63-3e05-4f34-a1b1-cf5ea05faed3",
+              "parentUUID": "b44622bd-fb69-4faa-a533-a3292599553c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "best practices - selecting elements",
+              "fullTitle": "Querying best practices - selecting elements",
+              "timedOut": null,
+              "duration": 978,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// https://on.cypress.io/best-practices#Selecting-Elements\ncy.get('[data-cy=best-practices-selecting-elements]').within(() => {\n  // Worst - too generic, no context\n  cy.get('button').click(); // Bad. Coupled to styling. Highly subject to change.\n  cy.get('.btn.btn-large').click(); // Average. Coupled to the `name` attribute which has HTML semantics.\n  cy.get('[name=submission]').click(); // Better. But still coupled to styling or JS event listeners.\n  cy.get('#main').click(); // Slightly better. Uses an ID but also ensures the element\n  // has an ARIA role attribute\n  cy.get('#main[role=button]').click(); // Much better. But still coupled to text content that may change.\n  cy.contains('Submit').click(); // Best. Insulated from all changes.\n  cy.get('[data-cy=submit]').click();\n});",
+              "err": {},
+              "uuid": "8dee1abe-6108-4dcc-89fe-87a151d3a7fa",
+              "parentUUID": "b44622bd-fb69-4faa-a533-a3292599553c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "aa0f6f79-5dad-4357-9ec7-ed672bc5ac24",
+            "012a4584-0df2-4355-a36f-fe295e035c72",
+            "23524c6a-eeb6-4ebb-a873-7909884e3adb",
+            "471a2e63-3e05-4f34-a1b1-cf5ea05faed3",
+            "8dee1abe-6108-4dcc-89fe-87a151d3a7fa"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2512,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "[status]_[datetime]-[name]-report",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportFilename": "[status]_[datetime]-[name]-report",
+        "timestamp": "isoDateTime",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
