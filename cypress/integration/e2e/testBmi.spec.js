@@ -1,6 +1,8 @@
 /// <reference types="cypress" />
 
-import bmiPage from '../../pageObject/bmiPage'
+import bmiPage from '../../pageObject/bmiPage';
+import height from '../../fixtures/height.json';
+
 
 const bmi = new bmiPage();
 
@@ -16,6 +18,7 @@ context('KalkulatorBMI', ()=>{
     beforeEach('Enter KalkulatorBMI', ()=>{
      cy.visit('http://localhost:8080/');
      cy.get('.title').should('contain','Kalkulator BMI');
+     cy.fixture('height.json').as('frazesByNumber');
     });
     it('Test2', ()=>{
       cy.get('.height').type('170');
@@ -86,10 +89,19 @@ context('KalkulatorBMI', ()=>{
       cy.get('#pomiaryHistorii').should('contain','Pomiar #1');
     });
     it('Test14', ()=>{
-      cy.get('.height').type('170');
-      cy.get('.weight').type('60');
+      cy.get('.height').as('input');
+      cy.fixture('height').then((frazes)=>{
+      cy.get('@input').type(frazes[0].fraze)
+      });
+      cy.get('.weight').as('input');
+      cy.fixture('height').then((frazes)=>{
+      cy.get('@input').type(frazes[1].fraze)
+      });;
       cy.get('.przycisk').click();
-      cy.get('.height').type('170');
+      cy.get('.height').as('input');
+      cy.fixture('height').then((frazes)=>{
+      cy.get('@input').type(frazes[0].fraze)
+      });
       cy.get('.weight').type('58');
       cy.get('.przycisk').click();
       cy.get('#pomiaryHistorii').should('contain','Pomiar #2');
